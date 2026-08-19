@@ -1,0 +1,135 @@
+<html lang="fa">
+<link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>warehouse management</title>
+</head>
+
+
+<body>
+<div id="appContent">
+    <header class="header">
+        <div class="main-header">
+            <h1>product's management</h1>
+        </div>
+    </header>
+
+    <main>
+        <section class="toolbar">
+            <h1></h1>
+            <div class="search-box">
+                <input id="searchInput" placeholder="search by product name">
+                <button id="searchBtn" type="button" class="btn btn-search"> search</button>
+                <button id="deleteBtn" type="button" class="btn btn-remove"> clear</button>
+            </div>
+            <button type="button" id="openAddFormBtn" class="btn btn-add">add product</button>
+        </section>
+
+        <section class="table">
+
+            <table id="product_table">
+
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>code</th>
+                    <th>category</th>
+                    <th>quantity</th>
+                    <th>purchasePrice</th>
+                    <th>sellPrice</th>
+                    <th>operation</th>
+
+                </tr>
+
+                </thead>
+                <tbody id="productTableBody">
+
+                </tbody>
+            </table>
+
+        </section>
+    </main>
+</div>
+<div  id="loginModal" class="overlayModal">
+    <div  class=" loginModal">
+        <div class="loginHeader">
+            <h2 id="loginModalTitle">login</h2>
+        </div>
+
+        <form id="loginForm">
+            <label> username
+                <input id="usernameField" type="text" required>
+            </label>
+
+            <label> password
+                <input id="passwordField"   type="password" required>
+            </label>
+            <p id="loginError" class="form-error" hidden></p>
+
+            <div class="modal-action">
+                <button type="submit" class="btn btn-save">enter</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="productModal" class="overlayModal">
+    <div class="modal">
+        <div class="modal-header">
+            <h2 id="modalTitle">add product</h2>
+            <button id="closeModalBtn" type="button" class="btn-close">x</button>
+        </div>
+
+
+        <form id="productForm" ACTION="/demo/api/products" method="post">
+            <input type="hidden" id="productId">
+
+            <label> product name
+                <input id="nameField" type="text" name="name" required>
+            </label>
+
+            <label> productCode
+                <input id="codeField" name="code" required>
+            </label>
+
+            <label> category
+                <input id="categoryField" type="text" name="category" required>
+            </label>
+
+            <label> quantity
+                <input id="quantityField" min="0" type="number" name="quantity" required>
+            </label>
+
+            <label> purchasePrice
+                <input id="purchasePriceField" min="0" type="number" name="purchasePrice" required>
+            </label>
+
+            <label> sellPrice
+                <input id="sellPriceField" min="0" type="number" name="sellPrice" required>
+            </label>
+            <div class="modal-action">
+                <button type="button" id="cancelFormBtn" class="btn btn-quit"> quit</button>
+                <button type="submit" class="btn btn-save"> save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="Practice.js"></script>
+</body>
+
+</html>
