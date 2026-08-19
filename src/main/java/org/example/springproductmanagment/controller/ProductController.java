@@ -42,7 +42,7 @@ public class ProductController {
         warehouseService.deleteProduct(id,performedBy);
 
     }
-    @PostMapping("/products/sell")
+    @PostMapping("/{id}/sell")
     @ResponseStatus(HttpStatus.OK)
     public void sell(@PathVariable int id , int quantity ,@AuthenticationPrincipal User performedBy){
         warehouseService.sellProduct(id , quantity , performedBy);
@@ -50,10 +50,10 @@ public class ProductController {
 
     }
 
-    @PostMapping("/products/purchase")
+    @PostMapping("/purchase")
     @ResponseStatus(HttpStatus.OK)
     public void purchase(@PathVariable int id , int quantity , @AuthenticationPrincipal User performedBy){
-        warehouseService.sellProduct(id , quantity , performedBy);
+        warehouseService.purchaseProduct(id , quantity , performedBy);
 
 
     }

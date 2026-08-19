@@ -42,7 +42,7 @@ const loginError = document.getElementById("loginError");
 async function loadProduct(){
 
    try {
-       const response = await fetch("/demo/api/products")
+       const response = await fetch("/api/products")
        products = await response.json();
        renderTable(products);
    }catch (error){
@@ -149,14 +149,13 @@ loginForm.addEventListener("submit", async (event)=> {
             userParameters.append("username",username);
             userParameters.append("password",password);
 
-            const response = await fetch("/demo/api/login",{
+            const response = await fetch("/api/login",{
                 method:"POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body:userParameters
             });
             if (!response.ok) {
-                const massage = await response.json();
-                alert("خطا: " + massage)
+                alert("خطا: نام کاربری یا رمز عبور اشتباه است");
                 return;
             }
             loginModal.style.display = "none";
@@ -174,7 +173,7 @@ loginForm.addEventListener("submit", async (event)=> {
 
 async function addProduct(data){
    try {
-       const response = await fetch("/demo/api/products",
+       const response = await fetch("/api/products",
            {method: "POST",
                headers :{"Content-Type": "application/json" },
                body: JSON.stringify(data)
@@ -195,7 +194,7 @@ async function addProduct(data){
 
 async function updateProduct(id, data) {
     try {
-        const response = await fetch("/demo/api/products",{
+        const response = await fetch("/api/products",{
             method:"PUT" ,
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(id , ...data)
@@ -217,7 +216,7 @@ async function updateProduct(id, data) {
 async function deleteProduct(id){
 
     try {
-        const response = await fetch(`demo/api/products?id=${id}` , {
+        const response = await fetch("/api/products?id=${id}" , {
             method:"DELETE"
         });
 
