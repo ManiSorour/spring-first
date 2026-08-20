@@ -1,5 +1,6 @@
 package org.example.springproductmanagment.service;
 
+import jakarta.transaction.Transactional;
 import org.example.springproductmanagment.model.product.Product;
 import org.example.springproductmanagment.model.role.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +19,14 @@ public class WarehouseService {
     public List<Product> getAllProducts() {
         return repository.findAll();
     }
-
+    @Transactional
     public void addProduct(Product product, User performedBy) {
         if (!performedBy.canEditStock()) {
             throw new SecurityException("only admin can add product");
         }
         repository.save(product);
     }
-
+    @Transactional
     public void updateProduct(int productId, String name, String code, String category, double purchasePrice, double sellPrice, int minStockLevel, User performedBy) {
         if (!performedBy.canEditStock()) {
             throw new SecurityException("only admin can add product");
@@ -43,7 +44,7 @@ public class WarehouseService {
         repository.save(product);
 
     }
-
+    @Transactional
     public void deleteProduct(int productId, User performedBy) {
         if (!performedBy.canEditStock()) {
             throw new SecurityException("این کاربر اجازه حذف را ندارد");
